@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Create Your Account</title>
+<link href="https://fonts.googleapis.com/css2?family=Yahoo+Sans:wght@400;600&family=Helvetica+Neue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --yahoo-purple: #0F69FF;
+    --yahoo-purple-light: #3D85FF;
+    --yahoo-blue: #0F69FF;
+    --input-border: #C8C8C8;
+    --input-focus: #0F69FF;
+    --label-color: #0F69FF;
+    --text-dark: #1A1A1A;
+    --text-muted: #767676;
+    --bg: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --btn-bg: #0F69FF;
+    --btn-text: #FFFFFF;
+    --error: #D0021B;
+    --radius: 4px;
+    --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 40px 0;
+    background: var(--bg);
+    margin-top: 85px;
+    overflow: hidden;
+  }
+
+  .card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: -0.2px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .subtitle a {
+    color: var(--yahoo-blue);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--label-color);
+    margin-bottom: 4px;
+    letter-spacing: 0.1px;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--input-border);
+    padding: 10px 0 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    background: transparent;
+    outline: none;
+    font-family: var(--font);
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .field input::placeholder {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    border-bottom-color: var(--input-focus);
+  }
+
+  .phone-row {
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--input-border);
+    transition: border-color 0.2s;
+  }
+
+  .phone-row:focus-within {
+    border-bottom-color: var(--input-focus);
+  }
+
+  .phone-code {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 8px 8px 0;
+    font-size: 15px;
+    color: var(--text-dark);
+    cursor: pointer;
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    font-family: var(--font);
+  }
+
+  .phone-code .arrow {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--text-muted);
+    margin-left: 2px;
+  }
+
+  .phone-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--input-border);
+    margin-right: 10px;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 4px;
+  }
+
+  .phone-row input {
+    flex: 1;
+    border: none;
+    padding: 10px 0 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    background: transparent;
+    outline: none;
+    font-family: var(--font);
+  }
+
+  .phone-row input::placeholder {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .phone-field-wrap {
+    margin-bottom: 20px;
+  }
+
+  .phone-field-wrap label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--label-color);
+    margin-bottom: 4px;
+    letter-spacing: 0.1px;
+  }
+
+  .btn-primary {
+    display: block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 28px;
+    margin-bottom: 16px;
+    font-family: var(--font);
+    letter-spacing: 0.2px;
+    transition: background 0.15s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:active {
+    background: #0050cc;
+    transform: scale(0.98);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .legal {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .legal a {
+    color: var(--yahoo-blue);
+    text-decoration: none;
+  }
+
+  .toast {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1A1A1A;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 999;
+    text-align: center;
+    max-width: 300px;
+  }
+
+  .toast.success { background: #1a7f37; }
+  .toast.error   { background: #D0021B; }
+  .toast.show    { display: block; }
+
+  .name-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--label-color);
+    margin-bottom: 4px;
+    letter-spacing: 0.1px;
+  }
+
+  .name-field input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--input-border);
+    padding: 10px 0 8px;
+    font-size: 16px;
+    color: var(--text-dark);
+    background: transparent;
+    outline: none;
+    font-family: var(--font);
+    transition: border-color 0.2s;
+  }
+
+  .name-field input::placeholder {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .name-field input:focus {
+    border-bottom-color: var(--input-focus);
+  }
+
+  .dob-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dob-overlay.open {
+    display: flex;
+  }
+
+  .dob-modal {
+    background: #fff;
+    width: 88%;
+    max-width: 340px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+
+  .dob-modal-header {
+    padding: 18px 20px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1A1A1A;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .dob-columns {
+    display: flex;
+    height: 156px;
+    overflow: hidden;
+  }
+
+  .dob-col {
+    flex: 1;
+    height: 156px;
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .dob-col-inner {
+    position: absolute;
+    left: 0; right: 0;
+    will-change: transform;
+  }
+
+  .dob-item {
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: #bbb;
+    cursor: pointer;
+    transition: font-size 0.08s, color 0.08s;
+  }
+
+  .dob-item.selected {
+    font-size: 22px;
+    font-weight: 500;
+    color: #212121;
+  }
+
+  .dob-selection-band {
+    position: absolute;
+    top: 52px; left: 6px; right: 6px;
+    height: 52px;
+    border-top: 1.5px solid #0F69FF;
+    border-bottom: 1.5px solid #0F69FF;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .dob-fade-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.97), rgba(255,255,255,0));
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .dob-fade-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 52px;
+    background: linear-gradient(to top, rgba(255,255,255,0.97), rgba(255,255,255,0));
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .dob-modal-footer {
+    display: flex;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .dob-modal-footer button {
+    flex: 1;
+    padding: 16px;
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .dob-modal-footer button.cancel { color: #757575; border-right: 1px solid #e0e0e0; }
+  .dob-modal-footer button.set    { color: #0F69FF; }
+
+  .top-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 50;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .progress-bar-wrap {
+    width: 120px;
+    height: 8px;
+    background: #E0E0E0;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    width: 40%;
+    height: 100%;
+    background: #3A3A3A;
+    border-radius: 100px;
+  }
+
+  @media (max-width: 440px) {
+    .card {
+      padding: 28px 20px 24px;
+      box-shadow: none;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="top-header">
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill"></div>
+  </div>
+</div>
+<div class="page">
+  <div class="card">
+    <h1>Create your account</h1>
+    <p class="subtitle">Already have an account? <a href="#">Sign in</a></p>
+
+    <div class="name-row">
+      <div class="name-field">
+        <input type="text" id="firstName" placeholder="First Name" autocomplete="given-name">
+      </div>
+      <div class="name-field">
+        <input type="text" id="lastName" placeholder="Last Name" autocomplete="family-name">
+      </div>
+    </div>
+
+    <div class="field">
+      <input type="password" placeholder="Set your password" id="pwd" autocomplete="new-password">
+    </div>
+
+    <div class="field">
+      <input type="password" placeholder="Confirm your password" id="confirmPwd" autocomplete="new-password">
+    </div>
+
+    <div class="phone-field-wrap">
+      <div class="phone-row">
+        <button type="button" class="phone-code" id="phoneCodeBtn">
+          Email
+        </button>
+        <div class="phone-divider"></div>
+        <input type="email" id="phoneInput" placeholder="Enter your email address" autocomplete="email">
+      </div>
+    </div>
+
+    <div class="field dob-field" id="dobField" onclick="openDobPicker()">
+      <input type="text" placeholder="Date of Birth" id="dobInput" readonly style="cursor:pointer;">
+    </div>
+
+    <button class="btn-primary" id="submitBtn" onclick="handleSubmit()">Create an account</button>
+
+    <p class="legal">
+      By continuing, you agree to Thmub's <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+    </p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="dob-overlay" id="dobOverlay">
+  <div class="dob-modal">
+    <div class="dob-modal-header">Date of Birth</div>
+    <div class="dob-columns">
+      <div class="dob-col" id="colMonth">
+        <div class="dob-selection-band"></div>
+        <div class="dob-fade-top"></div>
+        <div class="dob-fade-bottom"></div>
+        <div class="dob-col-inner" id="innerMonth"></div>
+      </div>
+      <div class="dob-col" id="colDay">
+        <div class="dob-selection-band"></div>
+        <div class="dob-fade-top"></div>
+        <div class="dob-fade-bottom"></div>
+        <div class="dob-col-inner" id="innerDay"></div>
+      </div>
+      <div class="dob-col" id="colYear">
+        <div class="dob-selection-band"></div>
+        <div class="dob-fade-top"></div>
+        <div class="dob-fade-bottom"></div>
+        <div class="dob-col-inner" id="innerYear"></div>
+      </div>
+    </div>
+    <div class="dob-modal-footer">
+      <button class="cancel" onclick="closeDobPicker()">Cancel</button>
+      <button class="set" onclick="confirmDob()">Set</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const DAYS   = Array.from({length:31},(_,i)=>String(i+1).padStart(2,'0'));
+  const YEARS  = Array.from({length:100},(_,i)=>String(2025-i));
+  const ITEM_H = 52;
+
+  function makeColumn(colId, innerId, items, initIndex) {
+    const col = document.getElementById(colId);
+    const inner = document.getElementById(innerId);
+    inner.innerHTML = items.map((v,i) =>
+      `<div class="dob-item${i===initIndex?' selected':''}" data-idx="${i}">${v}</div>`
+    ).join('');
+
+    let offset = initIndex;
+    let rafId = null;
+    let dragStartY = null, dragStartOffset = null, lastY = null, vel = 0;
+
+    function clamp(v){ return Math.max(0, Math.min(items.length-1, v)); }
+
+    function render(off) {
+      inner.querySelectorAll('.dob-item').forEach((el, i) => {
+        const dist = Math.abs(i - off);
+        el.classList.toggle('selected', dist < 0.5);
+        el.style.transform = `translateY(${(i - off) * ITEM_H + ITEM_H}px)`;
+        el.style.position = 'absolute';
+        el.style.left = '0'; el.style.right = '0';
+        el.style.top = '0';
+      });
+    }
+
+    function animateTo(target) {
+      if(rafId) cancelAnimationFrame(rafId);
+      const start = offset;
+      const end = clamp(Math.round(target));
+      const t0 = performance.now();
+      const dur = 180;
+      function step(now) {
+        const t = Math.min((now-t0)/dur, 1);
+        const ease = 1 - Math.pow(1-t, 3);
+        offset = start + (end-start)*ease;
+        render(offset);
+        if(t < 1) { rafId = requestAnimationFrame(step); }
+        else { offset = end; render(end); }
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    render(offset);
+
+    col.addEventListener('touchstart', e => {
+      if(rafId) cancelAnimationFrame(rafId);
+      dragStartY = e.touches[0].clientY;
+      dragStartOffset = offset; lastY = dragStartY; vel = 0;
+    }, {passive:true});
+    col.addEventListener('touchmove', e => {
+      e.preventDefault();
+      vel = (lastY - e.touches[0].clientY) / ITEM_H;
+      lastY = e.touches[0].clientY;
+      offset = clamp(dragStartOffset + (dragStartY - lastY) / ITEM_H);
+      render(offset);
+    }, {passive:false});
+    col.addEventListener('touchend', () => {
+      animateTo(clamp(Math.round(offset + vel*2.5)));
+      dragStartY = null;
+    });
+
+    col.addEventListener('mousedown', e => {
+      e.preventDefault();
+      if(rafId) cancelAnimationFrame(rafId);
+      dragStartY = e.clientY; dragStartOffset = offset; lastY = e.clientY; vel = 0;
+      const onMove = e => {
+        vel = (lastY - e.clientY) / ITEM_H;
+        lastY = e.clientY;
+        offset = clamp(dragStartOffset + (dragStartY - e.clientY) / ITEM_H);
+        render(offset);
+      };
+      const onUp = () => {
+        animateTo(clamp(Math.round(offset + vel*2.5)));
+        window.removeEventListener('mousemove', onMove);
+        window.removeEventListener('mouseup', onUp);
+      };
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onUp);
+    });
+
+    col.addEventListener('wheel', e => {
+      e.preventDefault();
+      animateTo(clamp(Math.round(offset) + (e.deltaY > 0 ? 1 : -1)));
+    }, {passive:false});
+
+    return { getIndex: () => Math.round(offset), animateTo };
+  }
+
+  let colM, colD, colY;
+
+  function openDobPicker() {
+    document.getElementById('dobOverlay').classList.add('open');
+    if(!colM) {
+      colM = makeColumn('colMonth','innerMonth', MONTHS, 0);
+      colD = makeColumn('colDay',  'innerDay',   DAYS,   0);
+      colY = makeColumn('colYear', 'innerYear',  YEARS,  0);
+    }
+  }
+
+  function closeDobPicker() {
+    document.getElementById('dobOverlay').classList.remove('open');
+  }
+
+  function confirmDob() {
+    const m = MONTHS[colM.getIndex()];
+    const d = DAYS[colD.getIndex()];
+    const y = YEARS[colY.getIndex()];
+    document.getElementById('dobInput').value = `${m} ${d}, ${y}`;
+    document.getElementById('dobInput').style.color = 'var(--text-dark)';
+    closeDobPicker();
+  }
+
+  document.getElementById('dobOverlay').addEventListener('click', function(e){
+    if(e.target === this) closeDobPicker();
+  });
+
+  function showToast(msg, type = '') {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = `toast ${type} show`;
+    setTimeout(() => { toast.className = 'toast'; }, 3500);
+  }
+
+  async function handleSubmit() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName  = document.getElementById('lastName').value.trim();
+    const pwd       = document.getElementById('pwd').value;
+    const confirmPwd = document.getElementById('confirmPwd').value;
+    const phone     = document.getElementById('phoneInput').value.trim();
+    const dob       = document.getElementById('dobInput').value.trim();
+
+    if (!firstName || !lastName) return showToast('Please enter your full name.', 'error');
+    if (!pwd) return showToast('Please set a password.', 'error');
+    if (pwd.length < 8) return showToast('Password must be at least 8 characters.', 'error');
+    if (pwd !== confirmPwd) return showToast('Passwords do not match.', 'error');
+    if (!phone) return showToast('Please enter your email address.', 'error');
+    if (!dob) return showToast('Please select your date of birth.', 'error');
+
+    showToast('Account created successfully!', 'success');
+  }
+
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('focus', () => {
+      const wrap = input.closest('.phone-row, .email-row');
+      if (wrap) wrap.style.borderBottomColor = 'var(--input-focus)';
+    });
+    input.addEventListener('blur', () => {
+      const wrap = input.closest('.phone-row, .email-row');
+      if (wrap) wrap.style.borderBottomColor = 'var(--input-border)';
+    });
+  });
+</script>
+</body>
+</html>
+
