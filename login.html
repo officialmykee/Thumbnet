@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kakao Account – Create Email</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #ffffff;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      display: flex;
+      gap: 6px;
+      padding: 32px 24px 0;
+    }
+    .progress-bar span {
+      height: 3px;
+      border-radius: 99px;
+      flex: 1;
+    }
+    .progress-bar .active   { background: #333333; }
+    .progress-bar .inactive { background: #DDDDDD; }
+
+    /* Content — does NOT flex-grow, just natural height */
+    .content {
+      padding: 32px 24px 0;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+      color: #111111;
+      line-height: 1.45;
+      margin-bottom: 36px;
+      letter-spacing: -0.3px;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1.5px solid #111111;
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+    .input-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      color: #111111;
+      background: transparent;
+    }
+    .input-row input::placeholder { color: #AAAAAA; }
+
+    .btn-verify {
+      flex-shrink: 0;
+      padding: 6px 16px;
+      border: 1.5px solid #CCCCCC;
+      border-radius: 999px;
+      background: #ffffff;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      color: #333333;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hints {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .hints p {
+      font-size: 12.5px;
+      color: #888888;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .hints p::before {
+      content: "•";
+      flex-shrink: 0;
+      color: #AAAAAA;
+    }
+
+    /* Next button — immediately after hints */
+    .btn-next {
+      display: block;
+      width: calc(100% - 48px);
+      margin: 0 24px;
+      padding: 12px;
+      background: #F2F2F2;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #333333;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+    }
+    .btn-next:hover { background: #E5E5E5; }
+
+    /* Spacer grows to push footer down */
+    .spacer { flex: 1; }
+
+    /* Footer always at bottom */
+    footer {
+      padding: 20px 16px 28px;
+      text-align: center;
+      border-top: 1px solid #EFEFEF;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px 2px;
+      margin-bottom: 8px;
+    }
+    .footer-links a, .footer-links span {
+      font-size: 11px;
+      color: #AAAAAA;
+      text-decoration: none;
+    }
+    .footer-links .sep { color: #DDDDDD; margin: 0 4px; }
+    .footer-links .lang { display: inline-flex; align-items: center; gap: 2px; }
+    .footer-links .lang svg { width: 10px; height: 10px; }
+    .footer-links strong { font-weight: 600; color: #888; }
+    .copyright { font-size: 11px; color: #CCCCCC; }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar">
+    <span class="active"></span>
+    <span class="inactive"></span>
+  </div>
+
+  <div class="content">
+    <h1>Please create an email to use with your Kakao Account.</h1>
+
+    <div class="input-row">
+      <input type="email" placeholder="Enter email address" />
+      <button class="btn-verify">Verify</button>
+    </div>
+
+    <div class="hints">
+      <p>A verification code has been sent to the email.</p>
+      <p>Please enter an email address to receive the verification email.</p>
+    </div>
+  </div>
+
+  <button class="btn-next">Next</button>
+
+  <div class="spacer"></div>
+
+  <footer>
+    <div class="footer-links">
+      <span class="lang">
+        English
+        <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 3.5L5 6.5L8 3.5" stroke="#AAAAAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="sep">|</span>
+      <a href="#">Terms of Service</a>
+      <span class="sep">|</span>
+      <a href="#"><strong>Privacy Policy</strong></a>
+      <span class="sep">|</span>
+      <a href="#">Customer Service</a>
+    </div>
+    <p class="copyright">© Kakao Corp.</p>
+  </footer>
+
+</body>
+</html>
+
