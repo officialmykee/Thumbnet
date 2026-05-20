@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>WhatsApp Input Bar</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    background: #128C7E;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .input-bar-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+    background: #128C7E;
+    z-index: 9999;
+  }
+
+  .input-pill {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0 6px 0 14px;
+    gap: 10px;
+    min-height: 44px;
+  }
+
+  .icon-slot {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Pin to bottom when text grows */
+    align-self: flex-end;
+    margin-bottom: 9px;
+  }
+
+  .icon-slot svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+  }
+
+  .message-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #111b21;
+    background: transparent;
+    min-height: 44px;
+    max-height: 120px;
+    overflow-y: auto;
+    line-height: 1.47;
+    cursor: text;
+    white-space: pre-wrap;
+    word-break: break-word;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .message-input:empty::before {
+    content: attr(data-placeholder);
+    color: #8696A0;
+    pointer-events: none;
+    display: block;
+    line-height: 44px;
+  }
+
+  .mic-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #25D366;
+    border: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    -webkit-tap-highlight-color: transparent;
+    align-self: flex-end;
+    margin-bottom: 5px;
+  }
+
+  .mic-btn:active {
+    background: #128C7E;
+    transform: scale(0.94);
+  }
+</style>
+</head>
+<body>
+
+<div class="input-bar-wrapper">
+  <div class="input-pill">
+    <div class="icon-slot">
+      <svg viewBox="0 0 1024 1024" fill="#575757" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#575757">
+        <g stroke-width="0"></g>
+        <g stroke-linecap="round" stroke-linejoin="round"></g>
+        <g>
+          <path d="M249.6 367.2c0 36 29.6 65.6 65.6 65.6s65.6-29.6 65.6-65.6-29.6-65.6-65.6-65.6-65.6 29.6-65.6 65.6zM512 790.4c214.4 0 259.2-194.4 259.2-194.4H252.8S297.6 790.4 512 790.4z"></path>
+          <path d="M512 1010.4c-274.4 0-497.6-224-497.6-498.4S237.6 14.4 512 14.4s498.4 223.2 498.4 498.4-224 497.6-498.4 497.6zM512 68C267.2 68 68 267.2 68 512s199.2 444 444 444 444-199.2 444-444S756.8 68 512 68z"></path>
+          <path d="M643.2 367.2c0 36 29.6 65.6 65.6 65.6 36 0 65.6-29.6 65.6-65.6s-29.6-65.6-65.6-65.6c-36 0-65.6 29.6-65.6 65.6z"></path>
+        </g>
+      </svg>
+    </div>
+    <div
+      class="message-input"
+      contenteditable="true"
+      data-placeholder="Message"
+      role="textbox"
+      aria-label="Message"
+      aria-multiline="true"
+    ></div>
+    <div class="icon-slot"></div>
+    <button class="mic-btn" aria-label="Voice message"></button>
+  </div>
+</div>
+
+<script>
+  const input = document.querySelector('.message-input');
+  input.addEventListener('input', function () {
+    if (this.innerHTML === '<br>' || this.innerHTML === '<div><br></div>') {
+      this.innerHTML = '';
+    }
+  });
+</script>
+
+</body>
+</html>
+
